@@ -107,7 +107,7 @@
                                         <a class="nav-link" href="#">Testimonials</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Contant Us</a>
+                                        <a class="nav-link" href="{{ route('contact') }}">Contant Us</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">FAQ</a>

@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(QuerySeeder::class);
+        $this->call(ServiceSeeder::class);
+        $this->call(AboutSeeder::class);
 
     }
 }

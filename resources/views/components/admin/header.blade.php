@@ -10,6 +10,8 @@
                     <span class="logo-lg mb-0">
                         <h2 class="mb-0 d-flex">
                             <span>Adash</span>
+                            {{-- <span>a-webdesign</span> --}}
+                            {{-- <img src="{{ asset('assets/image/logo-Alpha3-300x47.png') }}" alt="a-webdesign" width="180"> --}}
                         </h2>
                     </span>
                 </a>
@@ -34,11 +36,11 @@
                         </a>
 
                         @can('users_access')
-                            <div class="dropdown-divider"></div>
+                            {{-- <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('admin.users.index') }}">
                                 <i class="fas fa-users mr-1"></i>
                                 Users List
-                            </a>
+                            </a> --}}
                         @endcan
 
                         <div class="dropdown-divider"></div>

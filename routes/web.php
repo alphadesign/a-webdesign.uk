@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'home')->name('root');
+Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('queries', [QueryController::class, 'store'])->name('queries.store');
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');

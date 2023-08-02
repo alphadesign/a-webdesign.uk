@@ -1,9 +1,18 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\QueryController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use Takshak\Adash\Http\Middleware\ReferrerMiddleware;
 use Takshak\Adash\Http\Middleware\GatesMiddleware;
@@ -21,6 +30,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth', GatesMiddleware::class, ReferrerMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
+    // route for menus
+    Route::resource('courses', CourseController::class);
+    Route::resource('abouts', AboutController::class);
+    Route::get('abouts/{about}/status', [ServiceController::class, 'statusToggle'])->name('abouts.status');
+    Route::resource('services', ServiceController::class);
+    Route::get('services/{service}/status', [ServiceController::class, 'statusToggle'])->name('services.status');
+
+    Route::resource('portfolios', PortfolioController::class);
+    Route::resource('testimonials', TestimonialController::class);
+    Route::resource('contacts', ContactController::class);
+    Route::resource('faqs', FaqController::class);
+    Route::resource('newsletters', NewsletterController::class);
+    Route::resource('blog_category', NewsletterController::class);
+    Route::resource('newsletters', NewsletterController::class);
+    Route::resource('blog_categories', BlogController::class);
+    Route::resource('blogs', BlogController::class);
+
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('profile/edit', [AdminController::class, 'profileEdit'])->name('profile.edit');
     Route::post('profile/update', [AdminController::class, 'profileUpdate'])->name('profile.update');

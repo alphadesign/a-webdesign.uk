@@ -14,4 +14,8 @@ class HomeController extends Controller
             return redirect()->route('user.dashboard');
         }
     }
+    public function contact()
+    {
+        return view('contact');
+    }
 }
