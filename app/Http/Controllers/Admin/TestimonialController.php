@@ -2,64 +2,77 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\TestimonialAction;
 use App\Http\Controllers\Controller;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class TestimonialController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $this->authorize('testimonials_access');
+        $testimonials = Testimonial::latest()->get();
+        return view('admin.testimonials.index', compact('testimonials'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $this->authorize('testimonials_create');
+        return view('admin.testimonials.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request, TestimonialAction $action)
     {
-        //
+        $this->authorize('testimonials_create');
+        $request->validate([
+            'avatar'    =>  'nullable|image',
+            'title'     =>  'required|max:200',
+            'subtitle'  =>  'nullable|max:255',
+            'rating'    =>  'nullable|numeric|between:1,5',
+            'content'   =>  'required',
+            'status'    =>  'required',
+        ]);
+
+        $testimonial = new Testimonial;
+        $testimonial = $action->save($request, $testimonial);
+
+        return to_route('admin.testimonials.index')->withSuccess('SUCCESS !! New testimonial is successfully added.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Testimonial $testimonial)
     {
-        //
+        $this->authorize('testimonials_update');
+        return view('admin.testimonials.edit', compact('testimonial'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, Testimonial $testimonial, TestimonialAction $action)
     {
-        //
+        $this->authorize('testimonials_update');
+        $request->validate([
+            'avatar'    =>  'nullable|image',
+            'title'     =>  'required|max:200',
+            'subtitle'  =>  'nullable|max:255',
+            'rating'    =>  'nullable|numeric|between:1,5',
+            'content'   =>  'required',
+            'status'    =>  'required',
+        ]);
+
+        $testimonial = $action->save($request, $testimonial);
+        return to_route('admin.testimonials.index')->withSuccess('SUCCESS !! Testimonial is successfully updated.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Testimonial $testimonial)
     {
-        //
-    }
+        $this->authorize('testimonials_delete');
+        $avatar = public_path("storage/") . $testimonial->avatar;
+        if (File::exists($avatar)) {
+            File::delete($avatar);
+        }
+        $testimonial->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return to_route('admin.testimonials.index')->withSuccess('SUCCESS !! Testimonial is not successfully created.');
     }
 }

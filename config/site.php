@@ -39,7 +39,6 @@ return [
     'site'    =>    [
         'name'    =>    'Adash',
         'short_name'    =>    'AD',
-
         'logo_full'     =>    '',
         'logo_short'     =>    '',
         'favicon'         =>    '',

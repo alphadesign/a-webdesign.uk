@@ -31,9 +31,11 @@
                         <span>Blog Manage</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('admin.blog_categories.create') }}" class="btn-loader">New Blog Category</a>
+                        <li><a href="{{ route('admin.blog_categories.create') }}" class="btn-loader">New Blog
+                                Category</a>
                         </li>
-                        <li><a href="{{ route('admin.blog_categories.index') }}" class="btn-loader">All Blog Categories</a>
+                        <li><a href="{{ route('admin.blog_categories.index') }}" class="btn-loader">All Blog
+                                Categories</a>
                         </li>
                         <li><a href="{{ route('admin.blogs.create') }}" class="btn-loader">New Blog Post</a></li>
                         <li><a href="{{ route('admin.blogs.index') }}" class="btn-loader">All Blog Posts</a></li>
@@ -68,8 +70,10 @@
                         <span>Testimonial Manage</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('admin.testimonials.create') }}" class="btn-loader">New Testimonial</a></li>
-                        <li><a href="{{ route('admin.testimonials.index') }}" class="btn-loader">All Testimonials</a></li>
+                        <li><a href="{{ route('admin.testimonials.create') }}" class="btn-loader">New Testimonial</a>
+                        </li>
+                        <li><a href="{{ route('admin.testimonials.index') }}" class="btn-loader">All Testimonials</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -81,6 +85,17 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('admin.faqs.create') }}" class="btn-loader">New Faq</a></li>
                         <li><a href="{{ route('admin.faqs.index') }}" class="btn-loader">All Faq's</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ti-layers-alt"></i>
+                        <span>Page Manage</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.pages.create') }}" class="btn-loader">New Page</a></li>
+                        <li><a href="{{ route('admin.pages.index') }}" class="btn-loader">All Pages</a></li>
                     </ul>
                 </li>
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\QueryController;
@@ -39,6 +40,7 @@ Route::middleware(['auth', GatesMiddleware::class, ReferrerMiddleware::class])->
 
     Route::resource('portfolios', PortfolioController::class);
     Route::resource('testimonials', TestimonialController::class);
+    Route::resource('pages', PageController::class);
     Route::resource('contacts', ContactController::class);
     Route::resource('faqs', FaqController::class);
     Route::resource('newsletters', NewsletterController::class);

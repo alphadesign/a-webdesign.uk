@@ -9,9 +9,9 @@
                     </span>
                     <span class="logo-lg mb-0">
                         <h2 class="mb-0 d-flex">
-                            <span>Adash</span>
+                            {{-- <span>Adash</span> --}}
                             {{-- <span>a-webdesign</span> --}}
-                            {{-- <img src="{{ asset('assets/image/logo-Alpha3-300x47.png') }}" alt="a-webdesign" width="180"> --}}
+                            <img src="{{ asset('assets/image/logo-Alpha3-300x47.png') }}" alt="a-webdesign" width="180">
                         </h2>
                     </span>
                 </a>
