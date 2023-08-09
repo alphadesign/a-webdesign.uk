@@ -1,23 +1,23 @@
 <x-admin.layout>
-    <x-admin.breadcrumb title='All Services' :links="[
+    <x-admin.breadcrumb title='All Blogs' :links="[
 				[
                     'text' => 'Dashboard',
                     'url'  => route('admin.dashboard')
                 ],
                 [
-                    'text' => 'Services'
+                    'text' => 'Blog'
                 ]
 			]" :actions="[
                 [
                     'text'  => 'Filter',
                     'icon'  => 'fas fa-filter',
                     'class' => 'btn-secondary btn-loader',
-                    'url'   => route('admin.services.index', ['filter' => 1])
+                    'url'   => route('admin.blogs.index', ['filter' => 1])
                 ],
                 [
                     'text'       => 'Create New',
                     'icon'       => 'fas fa-plus',
-                    'url'        => route('admin.services.create'),
+                    'url'        => route('admin.blogs.create'),
                     'class'      => 'btn-dark btn-loader'
             ],
             ]" />
@@ -28,14 +28,22 @@
             <form action="">
                 <div class="row">
                     <div class="col-12 col-md-4">
-                        <input type="text" name="search" class="form-control mb-sm-0 mb-2" placeholder="Search"
-                            value="{{ Request::get('search') }}">
+                        <input type="text" name="search" class="form-control mb-sm-0 mb-2" placeholder="Search" value="{{ Request::get('search') }}">
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <select name="blog_category_id" class="form-control" required>
+                            <option value="">-- Select --</option>
+                            @foreach ($blogCategories as $blogCategory)
+                            <option value="{{ $blogCategory->id }}" {{ (Request::get('search')==$blogCategory->
+                                id) ? 'selected' : '' }}>{{ $blogCategory->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-12 col-md-4">
                         <button type="submit" class="btn btn-dark btn-loader">
                             <i class="fas fa-save"></i> Submit
                         </button>
-                        <a href="{{ route('admin.services.index') }}" class="btn btn-basic border btn-loader">
+                        <a href="{{ route('admin.blogs.index') }}" class="btn btn-basic border btn-loader">
                             <i class="fas fa-times"></i>
                         </a>
                     </div>
@@ -44,70 +52,56 @@
         </div>
     </div>
     @endif
-
     <div class="card shadow-sm">
-        <x-admin.paginator-info :items="$services" class="card-header" />
+        <x-admin.paginator-info :items="$blogs" class="card-header" />
         <div class="card-body table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Image</th>
-                        <th>Cover</th>
-                        <th>Name</th>
-                        <th>Short Description</th>
+                        <th>Thumbnail</th>
+                        <th>Title</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($services as $service)
+                    @foreach($blogs as $blog)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td><img src="{{ $service->mainImage() }}" alt="main image" width="70"></td>
-                        <td><img src="{{ $service->coverImage() }}" alt="cover image" width="70"></td>
-                        <td width="25%">{{ $service->name }}</td>
-                        <td>{{ Str::limit($service->short_description,80) }}</td>
+                        <td width="2%">{{ $loop->iteration }}</td>
+                        <td width="10%"><img src="{{ $blog->imageThumb() }}" alt="cover image" width="50" height="40"></td>
+                        <td width="60%">{{ $blog->title }}
+                        <div class="text-small">{{ Str::limit($blog->sub_title,50) }}</div>
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <button type="button"
-                                    class="btn btn-{{ $service->status ? 'success' : 'danger' }} text-nowrap btn-sm">
-                                    {{ $service->status ? 'Active' : 'In-active' }}
+                                    class="btn btn-{{ $blog->status ? 'success' : 'danger' }} text-nowrap btn-sm">
+                                    {{ $blog->status ? 'Active' : 'In-active' }}
                                 </button>
                                 <button type="button"
-                                    class="btn btn-{{ $service->status ? 'success' : 'danger' }} btn-sm dropdown-toggle dropdown-toggle-split"
+                                    class="btn btn-{{ $blog->status ? 'success' : 'danger' }} btn-sm dropdown-toggle dropdown-toggle-split"
                                     data-bs-toggle="dropdown">
                                     <i class="fas fa-caret-down"></i>
                                 </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item bg-danger text-white"
-                                        href="{{ route('admin.services.status', [$service]) }}">
-                                        In-active
-                                    </a>
-                                    <a class="dropdown-item bg-success text-white"
-                                        href="{{ route('admin.services.status', [$service]) }}">
-                                        Active
-                                    </a>
-                                </div>
                             </div>
                         </td>
                         <td width="15%">
-                            <a href="{{ route('admin.services.show', [$service]) }}"
+                            <a href="{{ route('admin.blogs.show', [$blog]) }}"
                                 class="btn btn-info btn-sm btn-loader load-circle">
                                 <i class="fas fa-info-circle"></i>
                             </a>
 
-                            <a href="{{ route('admin.services.edit', [$service]) }}"
+                            <a href="{{ route('admin.blogs.edit', [$blog]) }}"
                                 class="btn btn-success btn-sm btn-loader load-circle">
                                 <i class="fas fa-edit"></i>
                             </a>
 
-                            <form action="{{ route('admin.services.destroy', [$service]) }}" method="POST"
+                            <form action="{{ route('admin.blogs.destroy', [$blog]) }}" method="POST"
                                 class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger delete-alert btn-loader load-circle"><i
-                                        class="fas fa-trash"></i></button>
+                                <button class="btn btn-sm btn-danger delete-alert btn-loader load-circle"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
@@ -116,7 +110,7 @@
             </table>
         </div>
         <div class="card-footer">
-            {{ $services->links() }}
+            {{ $blogs->links() }}
         </div>
     </div>
 </x-admin.layout>

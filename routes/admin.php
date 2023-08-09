@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CourseController;
@@ -44,9 +45,7 @@ Route::middleware(['auth', GatesMiddleware::class, ReferrerMiddleware::class])->
     Route::resource('contacts', ContactController::class);
     Route::resource('faqs', FaqController::class);
     Route::resource('newsletters', NewsletterController::class);
-    Route::resource('blog_category', NewsletterController::class);
-    Route::resource('newsletters', NewsletterController::class);
-    Route::resource('blog_categories', BlogController::class);
+    Route::resource('blog_categories', BlogCategoryController::class);
     Route::resource('blogs', BlogController::class);
 
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');

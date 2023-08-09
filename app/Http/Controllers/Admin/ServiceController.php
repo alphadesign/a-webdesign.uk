@@ -19,7 +19,8 @@ class ServiceController extends Controller
                 $query->where('name', 'like', '%' . $request->get('search') . '%');
             });
         }
-        $services = $query->paginate(25)->withQueryString();
+        $services = $query->paginate(25)
+            ->withQueryString();
         return view('admin.services.index')->with('services', $services);
     }
 
