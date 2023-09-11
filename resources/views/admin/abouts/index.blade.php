@@ -61,7 +61,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($abouts as $about)
+                    @foreach($abouts ?? as $about)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td width="25%">{{ $about->name }}</td>

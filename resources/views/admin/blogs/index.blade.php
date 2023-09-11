@@ -69,9 +69,9 @@
                     @foreach($blogs as $blog)
                     <tr>
                         <td width="2%">{{ $loop->iteration }}</td>
-                        <td width="10%"><img src="{{ $blog->imageThumb() }}" alt="cover image" width="50" height="40"></td>
+                        <td width="10%"><img src="{{ $blog->imageThumb() }}" alt="cover image" width="100"></td>
                         <td width="60%">{{ $blog->title }}
-                        <div class="text-small">{{ Str::limit($blog->sub_title,50) }}</div>
+                        <div class="text-small">{{ Str::limit($blog->sub_title,150) }}</div>
                         </td>
                         <td>
                             <div class="btn-group">

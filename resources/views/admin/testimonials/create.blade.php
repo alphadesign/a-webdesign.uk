@@ -45,7 +45,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="">Status <span class="text-danger">*</span></label>
-                        <select name="status" class="form-control" required>
+                        <select name="status" class="form-control select2" required>
                             <option value="">-- Select --</option>
                             <option value="1" {{ (old('status')=='1' ) ? 'selected' : '' }}>Active</option>
                             <option value="0" {{ (old('status')=='0' ) ? 'selected' : '' }}>In-Active</option>

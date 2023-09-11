@@ -37,11 +37,14 @@ return [
     ],
 
     'site'    =>    [
-        'name'    =>    'Adash',
+        'name'          =>    'Alpha Webdesign',
+        'title'         =>    'Alpha Webdesign',
+        'description'   =>    'Alpha Webdesign',
+        'keyword'       =>    'Alpha Webdesign',
         'short_name'    =>    'AD',
         'logo_full'     =>    '',
-        'logo_short'     =>    '',
-        'favicon'         =>    '',
+        'logo_short'    =>    '',
+        'favicon'       =>    '',
     ],
 
     'primary_mail' => env('MAIL_PRIMARY', 'hello@example.com'),

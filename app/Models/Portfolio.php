@@ -15,6 +15,6 @@ class Portfolio extends Model
     {
         return $this->image
             ? storage($this->image)
-            : 'https://ui-avatars.com/api/?size=300&name=' . $this->title;
+            : 'https://picsum.photos/370/212';
     }
 }

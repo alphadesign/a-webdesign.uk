@@ -68,7 +68,7 @@ class BlogController extends Controller
         if ($request->file('image_thumb')) {
             $blog->image_thumb = 'blogs/' . time() . '.' . $request->file('image_thumb')->getClientOriginalExtension();
             Imager::init($request->file('image_thumb'))
-                ->resizeFit(600, 400)->inCanvas('#fff')
+                ->resizeFit(370, 212)->inCanvas('#fff')
                 ->basePath(storage_path('app/public/'))
                 ->save($blog->image_thumb);
         }
@@ -76,7 +76,7 @@ class BlogController extends Controller
         if ($request->file('image')) {
             $blog->image = 'blogs/' . time() . '.' . $request->file('image')->getClientOriginalExtension();
             Imager::init($request->file('image'))
-                ->resizeFit(1920, 1080)->inCanvas('#fff')
+                ->resizeFit(800, 390)->inCanvas('#fff')
                 ->basePath(storage_path('app/public/'))
                 ->save($blog->image);
         }
@@ -129,7 +129,7 @@ class BlogController extends Controller
             }
             $blog->image_thumb = 'blogs/' . time() . '.' . $request->file('image_thumb')->getClientOriginalExtension();
             Imager::init($request->file('image_thumb'))
-                ->resizeFit(600, 400)->inCanvas('#fff')
+                ->resizeFit(370, 212)->inCanvas('#fff')
                 ->basePath(storage_path('app/public/'))
                 ->save($blog->image_thumb);
         }
@@ -141,7 +141,7 @@ class BlogController extends Controller
             }
             $blog->image = 'blogs/' . time() . '.' . $request->file('image')->getClientOriginalExtension();
             Imager::init($request->file('image'))
-                ->resizeFit(1920, 1080)->inCanvas('#fff')
+                ->resizeFit(800, 390)->inCanvas('#fff')
                 ->basePath(storage_path('app/public/'))
                 ->save($blog->image);
         }

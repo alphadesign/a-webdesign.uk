@@ -15,15 +15,16 @@ class Service extends Model
         if ($this->main_image) {
             return asset('storage/' . $this->main_image);
         } else {
-            return 'https://ui-avatars.com/api/?name=NIL&background=random';
+            return 'https://picsum.photos/370/212';
         }
+
     }
     public function coverImage()
     {
         if ($this->cover_image) {
             return asset('storage/' . $this->cover_image);
         } else {
-            return 'https://ui-avatars.com/api/?name=NIL&background=random';
+            return 'https://picsum.photos/370/212';
         }
     }
 }

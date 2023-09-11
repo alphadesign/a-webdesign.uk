@@ -18,15 +18,6 @@ class AboutController extends Controller
         } else {
             return to_route('admin.abouts.create');
         }
-        // $query = About::query();
-        // if ($request->get('search')) {
-        //     $query->where(function ($query) use ($request) {
-        //         $query->where('name', 'like', '%' . $request->get('search') . '%');
-        //     });
-        // }
-        // $abouts = $query->paginate(25)
-        //     ->withQueryString();
-        // return view('admin.abouts.index')->with('abouts', $abouts);
     }
 
     public function create()
@@ -61,6 +52,7 @@ class AboutController extends Controller
         $about->meta_keyword              =  $request->post('meta_keyword');
         $about->meta_description          =  $request->post('meta_description');
 
+        // breadcrum photo should be 1600X800
         if ($request->file('cover_image')) {
             $about->cover_image = 'abouts/' . time() . '.' . $request->file('cover_image')->getClientOriginalExtension();
             Imager::init($request->file('cover_image'))
@@ -69,10 +61,11 @@ class AboutController extends Controller
                 ->save($about->cover_image);
         }
 
+        // main photo should be 1000X400
         if ($request->file('main_image')) {
             $about->main_image = 'abouts/' . time() . '.' . $request->file('main_image')->getClientOriginalExtension();
             Imager::init($request->file('main_image'))
-                ->resizeFit(1920, 1080)->inCanvas('#fff')
+                ->resizeFit(1000, 400)->inCanvas('#fff')
                 ->basePath(storage_path('app/public/'))
                 ->save($about->main_image);
         }
@@ -139,7 +132,7 @@ class AboutController extends Controller
         }
 
         $about->save();
-        return to_route('admin.abouts.index')->withSuccess('SUCCESS !! About is successfully updated');
+        return to_route('admin.abouts.edit',[$about])->withSuccess('SUCCESS !! About is successfully updated');
     }
 
     public function statusToggle(About $about)

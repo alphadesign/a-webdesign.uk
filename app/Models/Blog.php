@@ -20,7 +20,7 @@ class Blog extends Model
         if ($this->image_thumb) {
             return asset('storage/' . $this->image_thumb);
         } else {
-            return 'https://ui-avatars.com/api/?name=NIL&background=random';
+            return 'https://picsum.photos/370/212';
         }
     }
     public function image()
@@ -28,7 +28,7 @@ class Blog extends Model
         if ($this->image) {
             return asset('storage/' . $this->image);
         } else {
-            return 'https://ui-avatars.com/api/?name=NIL&background=random';
+            return 'https://picsum.photos/800/390';
         }
     }
 }

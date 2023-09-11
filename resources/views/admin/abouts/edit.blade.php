@@ -28,7 +28,7 @@
                     @method('PUT')
 
                     <div class="form-group">
-                        <label for="name">Name <span class="text-danger">*</span></label>
+                        <label for="name">Title <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control" required="" value="{{ $about->name }}">
                     </div>
                     <div class="form-group">
@@ -43,9 +43,10 @@
                     </div>
                     <div class="d-flex">
                         <div class="mr-2">
-                            <a href="#" class="bg-danger user_profile_remove text-white rounded-pill text-center p-0 border border-white border-3 load-circle"><i class="fas fa-times"></i></a>
                             <div id="cover-image-preview">
+                                @if ($about->cover_image)
                                 <img src="{{ $about->coverImage() }}" alt="image" width="70" class="rounded-circle img-thumbnail">
+                                @endif
                             </div>
                         </div>
                         <div class="form-group flex-fill">
@@ -56,9 +57,10 @@
 
                     <div class="d-flex">
                         <div class="mr-2">
-                            <a href="#" class="bg-danger user_profile_remove text-white rounded-pill text-center p-0 border border-white border-3 load-circle"><i class="fas fa-times"></i></a>
                             <div id="main-image-preview">
+                                @if ($about->main_image)
                                 <img src="{{ $about->mainImage() }}" alt="image" width="70" class="rounded-circle img-thumbnail">
+                                @endif
                             </div>
                         </div>
                         <div class="form-group flex-fill">
@@ -124,7 +126,7 @@
                 rounded: '50px',
                 targetId:'cover-image-preview'
             };
-            imageCropper('crop-cover-image', 1/1, previewImg);
+            imageCropper('crop-cover-image', 16/9, previewImg);
             var previewImg2 = {
                 width: '70px',
                 height: '70px',

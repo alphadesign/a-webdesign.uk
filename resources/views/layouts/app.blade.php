@@ -10,7 +10,22 @@
     <title>@yield('title', config('app.name', 'a-webdesign'))</title>
     <meta name="description" content="@yield('description', config('app.description', 'a-webdesign'))" />
     <meta name="keywords" content="@yield('keywords', config('app.keywords', 'a-webdesign'))" />
-    <meta name="author" content="Akhilesh Gupta" />
+    <meta name="author" content="config('app.name', 'a-webdesign')" />
+    <meta property="og:image" content="@yield('image', asset('assets/frontend/img/logo-2.png'))" />
+    <meta property="og:image:width" content="870" />
+    <meta property="og:image:height" content="456" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@yield('title', config('app.name', 'a-webdesign'))" />
+    <meta property="og:description" content="@yield('description', config('app.description', 'a-webdesign'))" />
+    <meta property="og:url" content="{{ request()->url() }}" />
+    <meta property="og:site_name" content="{{ config('app.name') }}" />
+    <meta property="fb:app_id" content="{{ config('app.facebook_app_id','AWebdesign.co.uk') }}"" />
+    <meta name=" twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@yield('title', config('app.name', 'a-webdesign'))" />
+    <meta name="twitter:description" content="" @yield('description', config('app.description', 'a-webdesign' ))" />
+    <meta name="twitter:image" content="@yield('image', asset('assets/frontend/img/logo-2.png'))" />
+    <link rel="canonical" href="{{ request()->url() }}" />
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/frontend/img/favicon.html') }}" type="image/x-icon">
     <!-- bootstrap -->
@@ -56,7 +71,7 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-7 d-xl-block d-lg-block d-flex align-items-center">
                             <div class="logo">
-                                <a href="{{ route('root') }}">
+                                <a href="{{ route('home') }}">
                                     {{-- <img src="{{ asset('assets/frontend/img/logo.png') }}" alt="logo"> --}}
                                     <img src="{{ asset('assets/image/logo-Alpha3-300x47.png') }}" alt="logo">
                                 </a>
@@ -76,11 +91,11 @@
                         <nav class="navbar navbar-expand-lg">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="#">Home</a>
+                                    <li @class(['nav-item', 'active'=> request()->routeIs('home')])>
+                                        <a class="nav-link" href="{{ route('home') }}">Home</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">About Us</a>
+                                    <li @class(['nav-item', 'active'=> request()->routeIs('about')])>
+                                        <a class="nav-link" href="{{ route('about') }}">About Us</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
@@ -88,29 +103,22 @@
                                             Services
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                                            <a class="dropdown-item" href="#">Alpha Design Package’s Details</a>
-                                            <a class="dropdown-item" href="#">Manchester Webdesign</a>
-                                            <a class="dropdown-item" href="#">Heywood Webdesign and web design in Heywood</a>
-                                            <a class="dropdown-item" href="#">Website Development</a>
-                                            <a class="dropdown-item" href="#">Domain Registeration</a>
-                                            <a class="dropdown-item" href="#">Web Maintenance</a>
-                                            <a class="dropdown-item" href="#">Logo Design</a>
-                                            <a class="dropdown-item" href="#">Social Media Marketing</a>
-                                            <a class="dropdown-item" href="#">IOS App Development</a>
-                                            <a class="dropdown-item" href="#">QR Codes</a>
+                                            @foreach (\App\Models\Service::where('status',true)->get() ?? [] as $service)
+                                            <a class="dropdown-item" href="{{ route('service',[$service]) }}">{{ $service?->name }}</a>
+                                            @endforeach
                                         </div>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Portfolio</a>
+                                    <li @class(['nav-item', 'active'=> request()->routeIs('portfolios') || request()->routeIs('portfolio')])>
+                                        <a class="nav-link" href="{{ route('portfolios') }}">Portfolio</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Testimonials</a>
+                                    <li @class(['nav-item', 'active'=> request()->routeIs('testimonials')])>
+                                        <a class="nav-link" href="{{ route('testimonials') }}">Testimonials</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li @class(['nav-item', 'active'=> request()->routeIs('contact')])>
                                         <a class="nav-link" href="{{ route('contact') }}">Contant Us</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">FAQ</a>
+                                    <li @class(['nav-item', 'active'=> request()->routeIs('faq')])>
+                                        <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                                     </li>
                                 </ul>
                             </div>
@@ -121,7 +129,7 @@
                     <div class="support-area">
                         <ul>
                             <li>
-                                <a href="#" class="quote-button">Get A Quote</a>
+                                <a href="{{ route('contact') }}" class="quote-button">Get A Quote</a>
                             </li>
                         </ul>
                     </div>
@@ -135,86 +143,79 @@
 
 
     <!-- footer begin -->
-    <div class="footer footer-2">
+    {{-- footer-4 --}}
+    <div @class(['footer', 'footer-2'=> !$callToAction])>
         <div class="container">
-            <div class="row justify-content-between">
+            @if($callToAction)
+            <div class="call-to-action">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 col-lg-10">
+                        <div class="cta-content">
+                            <div class="part-text">
+                                <h2>Have any project in your mind?</h2>
+                                <p>All the Lorem Ipsum generators on the Intern tend to repeat<br />
+                                    predefined chunks as necessa making.</p>
+                            </div>
+                            <div class="part-button">
+                                <a href="{{ route('contact') }}">Contact now <i
+                                        class="fas fa-long-arrow-alt-right"></i></a>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+            @endif
+            <div class="row justify-content-between">
                 <div class="col-xl-4 col-lg-4">
                     <div class="about-widget">
-                        <h3>About murtes</h3>
-                        <p>It uses a dictionary of over 200 Latin words
-                            combined with a handful of model sentence
-                            structures generate which looks reasonable
-                            generated is therefore allow.</p>
-                        <p>It uses a dictionary of over 200 Latin words
-                            generated is therefore allow.</p>
+                        <h3>About A-Webdesign</h3>
+                        <p>Alpha-Design is based in Manchester. With over 11 years of experience in design and
+                            programming, we combine our creative and technical expertise to provide a customised
+                            solution for each individual client.</p>
                     </div>
                 </div>
-
+                @foreach (\App\Models\Page::where('status',true)->get()->split(2) ?? [] as $groups)
                 <div class="col-xl-2 col-lg-2">
                     <div class="links-widget">
-                        <h3>Company</h3>
+                        <h3>
+                            @if ($loop->index==0)
+
+                            Company
+                            @else
+                            &nbsp;
+                            @endif
+                        </h3>
                         <ul>
+                            @foreach ($groups ?? [] as $page)
                             <li>
-                                <a href="#">What's new</a>
+                                <a href="#">{{ $page->title }}</a>
                             </li>
-                            <li>
-                                <a href="#">Try Demo</a>
-                            </li>
-                            <li>
-                                <a href="#">Terms of service</a>
-                            </li>
-                            <li>
-                                <a href="#">Page Builder</a>
-                            </li>
-                            <li>
-                                <a href="#">Privacy policy</a>
-                            </li>
+
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
+                @endforeach
 
-                <div class="col-xl-2 col-lg-2">
-                    <div class="links-widget">
-                        <h3>Product</h3>
-                        <ul>
-                            <li>
-                                <a href="#">Features</a>
-                            </li>
-                            <li>
-                                <a href="#">Pricing</a>
-                            </li>
-                            <li>
-                                <a href="#">Customers</a>
-                            </li>
-                            <li>
-                                <a href="#">Page Builder</a>
-                            </li>
-                            <li>
-                                <a href="#">What's new</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+
 
                 <div class="col-xl-2 col-lg-2">
                     <div class="links-widget">
                         <h3>Help Center</h3>
                         <ul>
                             <li>
-                                <a href="#">Help centre</a>
+                                <a href="{{ route('portfolios') }}">Portfolio</a>
                             </li>
                             <li>
-                                <a href="#">Email Us</a>
+                                <a href="{{ route('faq') }}">FAQ</a>
                             </li>
                             <li>
-                                <a href="#">Customers</a>
+                                <a href="{{ route('contact') }}">Contact Us</a>
                             </li>
                             <li>
-                                <a href="#">Message Us</a>
-                            </li>
-                            <li>
-                                <a href="#">Blog</a>
+                                <a href="{{ route('blogs') }}">Blogs</a>
                             </li>
                         </ul>
                     </div>
@@ -231,20 +232,23 @@
             <div class="row justify-content-between">
                 <div class="col-xl-6 col-lg-6 d-xl-flex d-lg-flex d-block align-items-center">
                     <div class="cp-area">
-                        <p>Copyright © 2019 murtes. All Rights Reserved</p>
+                        <p>Copyright © {{ now()->format('Y') }} {{ config('app.name') }}. All Rights Reserved</p>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
                     <div class="social-area">
                         <ul>
                             <li>
-                                <a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="facebook" href="https://www.facebook.com/AWebdesign.co.uk" target="_blank"><i
+                                        class="fab fa-facebook-f"></i></a>
                             </li>
                             <li>
-                                <a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="twitter" href="https://twitter.com/alpha_webdesign" target="_blank"><i
+                                        class="fab fa-twitter"></i></a>
                             </li>
                             <li>
-                                <a class="skype" href="#"><i class="fab fa-skype"></i></a>
+                                <a class="youtube" href="https://www.youtube.com/@computingacademy" target="_blank"><i
+                                        class="fab fa-youtube"></i></a>
                             </li>
                         </ul>
                     </div>

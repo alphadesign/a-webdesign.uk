@@ -18,7 +18,7 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="name">Name <span class="text-danger">*</span></label>
+                        <label for="name">Title <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control" required="">
                     </div>
 

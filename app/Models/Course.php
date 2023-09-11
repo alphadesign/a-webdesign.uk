@@ -15,7 +15,7 @@ class Course extends Model
         if ($this->thumbnail) {
             return asset('storage/' . $this->thumbnail);
         } else {
-            return 'https://ui-avatars.com/api/?name=NIL&background=random';
+            return 'https://picsum.photos/370/210';
         }
     }
 }

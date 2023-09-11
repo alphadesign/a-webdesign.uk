@@ -11,22 +11,20 @@
             <table class="table mb-0">
                 <thead>
                     <th>#</th>
-                    <th>Title</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
-                    <th>Subject</th>
+                    <th>Message</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
                     @foreach($contacts as $key => $contact)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $contact->title }}</td>
                         <td>{{ $contact->name }}</td>
                         <td>{{ $contact->email }}</td>
                         <td>{{ $contact->mobile }}</td>
-                        <td>{{ $contact->subject }}</td>
+                        <td>{{ $contact->message }}</td>
                         <td class="text-nowrap">
                             <a href="{{ route('admin.contacts.show', [$contact]) }}"
                                 class="btn btn-sm btn-info btn-loader load-circle">

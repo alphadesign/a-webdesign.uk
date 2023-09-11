@@ -22,11 +22,11 @@
                     <table class="table">
                         <tr>
                             <td><b>Image:</b></td>
-                            <td><img src="{{ $blog->image() }}" alt="alt" srcset="{{ $blog->image() }}" width="40"></td>
+                            <td><img src="{{ $blog->image() }}" alt="alt" srcset="{{ $blog->image() }}" width="200"></td>
                         </tr>
                         <tr>
                             <td><b>Thumbnail:</b></td>
-                            <td><img src="{{ $blog->imageThumb() }}" alt="alt" srcset="{{ $blog->imageThumb() }}" width="40"></td>
+                            <td><img src="{{ $blog->imageThumb() }}" alt="alt" srcset="{{ $blog->imageThumb() }}" width="100"></td>
                         </tr>
                         <tr>
                             <td><b>Title:</b></td>

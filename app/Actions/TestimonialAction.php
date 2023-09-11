@@ -15,7 +15,7 @@ class TestimonialAction
             $testimonial->avatar    .= $request->file('avatar')->extension();
 
             Imager::init($request->file('avatar'))
-                ->resizeFit(300, 300)
+                ->resizeFit(340, 440)
                 ->inCanvas('#fff')
                 ->save(Storage::disk('public')->path($testimonial->avatar));
         }

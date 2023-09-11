@@ -115,12 +115,10 @@
             <div class="this-section-title">
                 <div class="row justify-content-between">
                     <div class="col-xl-6 col-lg-6">
-                        <h2>We creating solutions<br />
-                            for your organization</h2>
+                        <h2>This is our <br> company’s ethos</h2>
                     </div>
                     <div class="col-xl-5 col-lg-5 d-xl-flex d-lg-flex d-block align-items-center">
-                        <p>But I must explain to you how all this mistaken denouncing
-                            praising pain was born and because those who do not know.</p>
+                        <p>We believe that your success is our success and as a result, we always work hard for our customers to gain more business.</p>
                     </div>
                 </div>
             </div>
@@ -132,7 +130,7 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a>
+                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">Product<br /> control services
@@ -140,7 +138,7 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a>
+                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">Quality <br />control system
@@ -148,7 +146,7 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a>
+                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">Software<br /> Engineering
@@ -156,7 +154,7 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a>
+                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">Desktop<br /> Computing
@@ -164,7 +162,7 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a>
+                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">UI/UX<br /> Strategy
@@ -172,7 +170,7 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a>
+                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
             </div>
         </div>
@@ -322,119 +320,24 @@
             </div>
 
             <div class="row">
+                @foreach ($courses ?? [] as $course)
                 <div class="col-xl-4 col-lg-4 col-md-6" data-aos="murtes-animation" data-aos-offset="300"
                     data-aos-duration="500" data-aos-easing="ease-in-sine">
                     <div class="single-servcie">
                         <div class="part-img">
-                            <img src="{{ asset('assets/frontend/img/service-1.jpg') }}" alt="">
+                            <img src="{{ asset($course->thumbnail()) }}" alt="{{ $course?->title }}" width="370px">
                         </div>
                         <div class="part-text">
-                            <h3 class="service-title">Warranty<br /> managment it
-                                <span class="bg-number">01</span>
+                            <h3 class="service-title">{{ $course?->title }}
+                                <span class="bg-number">{{ $loop->iteration }}</span>
                             </h3>
-                            <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
-                                pleasure and praising pain was born</p>
-                            <a href="#" class="service-details-button">Discover now <i
+                            <p class="service-content">{{ Str::limit($course?->sub_title,100) }}</p>
+                            <a href="{{ route('course',[$course]) }}" class="service-details-button">Discover now <i
                                     class="fas fa-long-arrow-alt-right"></i></a>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6" data-aos="murtes-animation" data-aos-offset="300"
-                    data-aos-duration="1000" data-aos-easing="ease-in-sine">
-                    <div class="single-servcie">
-                        <div class="part-img">
-                            <img src="{{ asset('assets/frontend/img/service-2.jpg') }}" alt="">
-                        </div>
-                        <div class="part-text">
-                            <h3 class="service-title">Product<br />
-                                Control services
-                                <span class="bg-number">01</span>
-                            </h3>
-                            <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
-                                pleasure and praising pain was born</p>
-                            <a href="#" class="service-details-button">Discover now <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6" data-aos="murtes-animation" data-aos-offset="300"
-                    data-aos-duration="1500" data-aos-easing="ease-in-sine">
-                    <div class="single-servcie">
-                        <div class="part-img">
-                            <img src="{{ asset('assets/frontend/img/service-3.jpg') }}" alt="">
-                        </div>
-                        <div class="part-text">
-                            <h3 class="service-title">Desktop
-                                <br /> Computing
-                                <span class="bg-number">01</span>
-                            </h3>
-                            <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
-                                pleasure and praising pain was born</p>
-                            <a href="#" class="service-details-button">Discover now <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6" data-aos="murtes-animation" data-aos-offset="300"
-                    data-aos-duration="500" data-aos-easing="ease-in-sine">
-                    <div class="single-servcie">
-                        <div class="part-img">
-                            <img src="{{ asset('assets/frontend/img/service-4.jpg') }}" alt="">
-                        </div>
-                        <div class="part-text">
-                            <h3 class="service-title">Quality
-                                <br /> Control system
-                                <span class="bg-number">01</span>
-                            </h3>
-                            <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
-                                pleasure and praising pain was born</p>
-                            <a href="#" class="service-details-button">Discover now <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6" data-aos="murtes-animation" data-aos-offset="300"
-                    data-aos-duration="1000" data-aos-easing="ease-in-sine">
-                    <div class="single-servcie">
-                        <div class="part-img">
-                            <img src="{{ asset('assets/frontend/img/service-5.jpg') }}" alt="">
-                        </div>
-                        <div class="part-text">
-                            <h3 class="service-title">Infrastructure<br />
-                                Planning
-                                <span class="bg-number">01</span>
-                            </h3>
-                            <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
-                                pleasure and praising pain was born</p>
-                            <a href="#" class="service-details-button">Discover now <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6" data-aos="murtes-animation" data-aos-offset="300"
-                    data-aos-duration="1500" data-aos-easing="ease-in-sine">
-                    <div class="single-servcie">
-                        <div class="part-img">
-                            <img src="{{ asset('assets/frontend/img/service-6.jpg') }}" alt="">
-                        </div>
-                        <div class="part-text">
-                            <h3 class="service-title">Software<br />
-                                Engineering
-                                <span class="bg-number">01</span>
-                            </h3>
-                            <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
-                                pleasure and praising pain was born</p>
-                            <a href="#" class="service-details-button">Discover now <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </div>

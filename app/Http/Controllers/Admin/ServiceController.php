@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Takshak\Imager\Facades\Imager;
 
 class ServiceController extends Controller
@@ -45,6 +46,7 @@ class ServiceController extends Controller
 
         $service = new Service;
         $service->name                      =  $request->post('name');
+        $service->slug                      =  Str::slug($request->post('name'));
         $service->status                    =  $request->post('status');
         $service->short_description         =  $request->post('short_description');
         $service->long_description          =  $request->post('long_description');
@@ -98,6 +100,7 @@ class ServiceController extends Controller
         ]);
 
         $service->name                =  $request->post('name');
+        $service->slug                =  Str::slug($request->post('name'));
         $service->status              =  $request->post('status');
         $service->short_description   =  $request->post('short_description');
         $service->long_description    =  $request->post('long_description');

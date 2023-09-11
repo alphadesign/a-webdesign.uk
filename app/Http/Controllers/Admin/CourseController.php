@@ -49,7 +49,7 @@ class CourseController extends Controller
         $course->sub_title                 =  $request->post('sub_title');
         $course->slug                      =  Str::slug($request->post('title'));
         $course->description               =  $request->post('description');
-        $course->video_url                 =  $request->post('video_url');
+        $course->video_url                 =   $this->getYoutubeEmbedUrl($request->post('video_url'));
         $course->status                    =  $request->post('status');
         $course->popular                   =  $request->post('popular');
         $course->meta_title                =  $request->post('meta_title');
@@ -59,7 +59,7 @@ class CourseController extends Controller
         if ($request->file('thumbnail')) {
             $course->thumbnail = 'courses/' . time() . '.' . $request->file('thumbnail')->getClientOriginalExtension();
             Imager::init($request->file('thumbnail'))
-                ->resizeFit(600, 400)->inCanvas('#fff')
+                ->resizeFit(370, 212)->inCanvas('#fff')
                 ->basePath(storage_path('app/public/'))
                 ->save($course->thumbnail);
         }
@@ -99,7 +99,7 @@ class CourseController extends Controller
         $course->sub_title                 =  $request->post('sub_title');
         $course->slug                      =  Str::slug($request->post('title'));
         $course->description               =  $request->post('description');
-        $course->video_url                 =  $request->post('video_url');
+        $course->video_url                 =  $this->getYoutubeEmbedUrl($request->post('video_url'));
         $course->status                    =  $request->post('status');
         $course->popular                   =  $request->post('popular');
         $course->meta_title                =  $request->post('meta_title');
@@ -113,7 +113,7 @@ class CourseController extends Controller
             }
             $course->thumbnail = 'courses/' . time() . '.' . $request->file('thumbnail')->getClientOriginalExtension();
             Imager::init($request->file('thumbnail'))
-                ->resizeFit(600, 400)->inCanvas('#fff')
+                ->resizeFit(370, 212)->inCanvas('#fff')
                 ->basePath(storage_path('app/public/'))
                 ->save($course->thumbnail);
         }
@@ -131,5 +131,20 @@ class CourseController extends Controller
         }
         $course->delete();
         return to_route('admin.courses.index')->withErrors('Course has been successfully deleted.');
+    }
+
+    function getYoutubeEmbedUrl($url)
+    {
+        $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_-]+)\??/i';
+        $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9_-]+)/i';
+
+        if (preg_match($longUrlRegex, $url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+
+        if (preg_match($shortUrlRegex, $url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+        return 'https://www.youtube.com/embed/' . $youtube_id;
     }
 }

@@ -3977,6 +3977,8 @@ ul {
           background: #55acee; }
         .copyright .social-area ul li a.skype {
           background: #00AFF0; }
+          .copyright .social-area ul li a.youtube {
+            background: #f00; }
 
 /*==========================================
     overview
@@ -4314,7 +4316,8 @@ ul {
       color: #72839a;
       font-weight: 500;
       line-height: 28px;
-      margin-bottom: 24px; }
+      margin-bottom: 24px;
+      text-align: justify; }
     .testimonial .single-testimonial .part-user {
       display: flow-root; }
       .testimonial .single-testimonial .part-user .part-img {

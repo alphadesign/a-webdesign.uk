@@ -49,7 +49,7 @@ class PortfolioController extends Controller
             $portfolio->image   .= $request->file('image')->extension();
 
             Imager::init($request->file('image'))
-                ->resizeFit(400, 300)
+                ->resizeFit(370, 212)
                 ->inCanvas('#fff')
                 ->save(Storage::disk('public')->path($portfolio->image));
         }

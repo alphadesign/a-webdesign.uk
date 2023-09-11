@@ -18,6 +18,7 @@ class ServiceFactory extends Factory
     {
         return [
             'name'                =>  fake()->realText(50, 2),
+            'slug'                =>  fake()->slug(),
             'status'              =>  fake()->boolean(50),
             'short_description'   =>  fake()->realText(200, 2),
             'long_description'    =>  fake()->realText(500, 2),

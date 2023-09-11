@@ -15,7 +15,7 @@ class About extends Model
         if ($this->main_image) {
             return asset('storage/' . $this->main_image);
         } else {
-            return 'https://ui-avatars.com/api/?name=NIL&background=random';
+            return asset('assets/frontend/img/case-deatails.jpg');
         }
     }
     public function coverImage()
@@ -23,7 +23,7 @@ class About extends Model
         if ($this->cover_image) {
             return asset('storage/' . $this->cover_image);
         } else {
-            return 'https://ui-avatars.com/api/?name=NIL&background=random';
+            return asset('assets/frontend/img/case-deatails.jpg');
         }
     }
 }

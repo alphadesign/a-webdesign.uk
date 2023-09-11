@@ -125,7 +125,7 @@
                 rounded: '50px',
                 targetId:'cover-image-preview'
             };
-            imageCropper('crop-cover-image', 1/1, previewImg);
+            imageCropper('crop-cover-image', 16/9, previewImg);
 
 
             tinymce.init({
