@@ -77,18 +77,32 @@
                             <div class="btn-group">
                                 <button type="button"
                                     class="btn btn-{{ $blog->status ? 'success' : 'danger' }} text-nowrap btn-sm">
-                                    {{ $blog->status ? 'Active' : 'In-active' }}
+                                    {!! $blog->status ? 'Active'.str_repeat('&nbsp;', 3) : 'In-active' !!}
                                 </button>
                                 <button type="button"
                                     class="btn btn-{{ $blog->status ? 'success' : 'danger' }} btn-sm dropdown-toggle dropdown-toggle-split"
                                     data-bs-toggle="dropdown">
                                     <i class="fas fa-caret-down"></i>
                                 </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item bg-danger text-white"
+                                        href="{{ route('admin.blogs.status', [$blog]) }}">
+                                        In-active
+                                    </a>
+                                    <a class="dropdown-item bg-success text-white"
+                                        href="{{ route('admin.blogs.status', [$blog]) }}">
+                                        Active
+                                    </a>
+                                </div>
                             </div>
                         </td>
                         <td width="15%">
-                            <a href="{{ route('admin.blogs.show', [$blog]) }}"
+                            {{-- <a href="{{ route('admin.blogs.show', [$blog]) }}"
                                 class="btn btn-info btn-sm btn-loader load-circle">
+                                <i class="fas fa-info-circle"></i>
+                            </a> --}}
+                            <a href="{{ route('blog', [$blog]) }}"
+                                class="btn btn-info btn-sm btn-loader load-circle" title="Preview" target="_blank">
                                 <i class="fas fa-info-circle"></i>
                             </a>
 

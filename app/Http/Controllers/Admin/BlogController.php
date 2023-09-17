@@ -161,7 +161,14 @@ class BlogController extends Controller
         if (File::exists($image)) {
             File::delete($image);
         }
+
         $blog->delete();
         return to_route('admin.blogs.index')->withErrors('Blog has been successfully deleted.');
+    }
+
+    public function statusToggle(Blog $blog)
+    {
+        $blog->update(['status' => $blog->status ? false : true]);
+        return back()->withSuccess('Status successfully updated');
     }
 }

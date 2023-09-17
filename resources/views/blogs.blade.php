@@ -9,10 +9,17 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="breadcrumb-content">
-                        <h2>Blogs</h2>
+                        <h2>Blogs @if ($blogCategory?->id)
+                            / {{ $blogCategory->name }}
+                            @endif</h2>
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
+                            @if ($blogCategory?->id)
+                            <li><a href="{{ route('blogs') }}">Blogs</a></li>
+                            <li>{{ $blogCategory->name }}</li>
+                            @else
                             <li>Blogs</li>
+                            @endif
                         </ul>
                     </div>
                 </div>

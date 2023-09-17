@@ -13,9 +13,9 @@
                         <p>We believe that your success is our success and as a result, we always work hard for our
                             customer to gain more business. This is our company's ethos.</p>
                         <div class="buttons">
-                            <a href="#" class="banner-button btn-murtes">Explore more <i
+                            <a href="{{ route('about') }}" class="banner-button btn-murtes">About us <i
                                     class="fas fa-long-arrow-alt-right"></i></a>
-                            <a href="#" class="banner-button btn-murtes-2">Get a Quote <i
+                            <a href="{{ route('contact') }}" class="banner-button btn-murtes-2">Get a Quote <i
                                     class="fas fa-long-arrow-alt-right"></i></a>
                         </div>
                     </div>
@@ -455,7 +455,8 @@
                 <div class="col-xl-5 col-lg-5">
                     <div class="part-img">
                         <div class="shape-1">
-                            <img src="{{ asset('assets/frontend/img/about-shape-1.png') }}" alt="">
+                            {{-- <img src="{{ asset('assets/frontend/img/about-shape-1.png') }}" alt=""> --}}
+                            <img src="{{ asset('assets/frontend/img/about-shape-111.png') }}" alt="">
                         </div>
                         <div class="shape-2">
                             <img src="{{ asset('assets/frontend/img/team-shape.png') }}" alt="">

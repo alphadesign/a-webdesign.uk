@@ -72,7 +72,7 @@
                             <div class="btn-group">
                                 <button type="button"
                                     class="btn btn-{{ $service->status ? 'success' : 'danger' }} text-nowrap btn-sm">
-                                    {{ $service->status ? 'Active' : 'In-active' }}
+                                    {!! $service->status ? 'Active'.str_repeat('&nbsp;', 3) : 'In-active' !!}
                                 </button>
                                 <button type="button"
                                     class="btn btn-{{ $service->status ? 'success' : 'danger' }} btn-sm dropdown-toggle dropdown-toggle-split"
@@ -92,8 +92,12 @@
                             </div>
                         </td>
                         <td width="15%">
-                            <a href="{{ route('admin.services.show', [$service]) }}"
+                            {{-- <a href="{{ route('admin.services.show', [$service]) }}"
                                 class="btn btn-info btn-sm btn-loader load-circle">
+                                <i class="fas fa-info-circle"></i>
+                            </a> --}}
+                            <a href="{{ route('service', [$service]) }}"
+                                class="btn btn-info btn-sm btn-loader load-circle" title="Preview" target="_blank">
                                 <i class="fas fa-info-circle"></i>
                             </a>
 

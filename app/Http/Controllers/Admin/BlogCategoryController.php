@@ -20,7 +20,7 @@ class BlogCategoryController extends Controller
                 $query->where('name', 'like', '%' . $request->get('search') . '%');
             });
         }
-         $blog_categories = $query->paginate(25)
+        $blog_categories = $query->paginate(25)
             ->withQueryString();
         return view('admin.blog_categories.index')->with('blog_categories', $blog_categories);
     }
@@ -146,5 +146,11 @@ class BlogCategoryController extends Controller
         $blogCategory->blogs()->delete();
         $blogCategory->delete();
         return to_route('admin.blog_categories.index')->withErrors('Blog Category has been successfully deleted.');
+    }
+
+    public function statusToggle(BlogCategory $blogCategory)
+    {
+        $blogCategory->update(['status' => $blogCategory->status ? false : true]);
+        return back()->withSuccess('Status successfully updated');
     }
 }

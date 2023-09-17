@@ -12,6 +12,9 @@
 
 
     <div class="card shadow-sm">
+        <div class="card-header">
+            <a href="{{ route('faq') }}" target="_blank" class="btn btn-primary">Preview</a>
+        </div>
         <div class="card-body table-responsive">
             @if($faq->status)
                 <span class="badge badge-success fs-14">Active</span>

@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::latest()->paginate(100);
+        $contacts = Contact::when($request->order, function ($query) use ($request) {
+            $query->orderBy('name', $request->order);
+        }, function ($query) use ($request) {
+            $query->latest();
+        })->paginate(100);
         return view('admin.contacts.index')->with([
             'contacts' => $contacts
         ]);
@@ -35,9 +39,9 @@ class ContactController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Contact $contact)
     {
-        //
+        return view('admin.contacts.show', compact('contact'));
     }
 
     /**
@@ -59,8 +63,17 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return to_route('admin.contacts.index')->withSuccess('SUCCESS !! Query has been successfully deleted');
+    }
+
+    public function destroyAll(Request $request)
+    {
+        $ids = $request->ids;
+        Contact::whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Queries has been Deleted successfully."]);
+        // return to_route('admin.contacts.index')->withSuccess('SUCCESS !! Queries has been successfully deleted');
     }
 }

@@ -34,19 +34,27 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', GatesMiddleware::class, ReferrerMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
     // route for menus
     Route::resource('courses', CourseController::class);
+    Route::get('courses/{course}/status', [CourseController::class, 'statusToggle'])->name('courses.status');
     Route::resource('abouts', AboutController::class);
     Route::get('abouts/{about}/status', [ServiceController::class, 'statusToggle'])->name('abouts.status');
     Route::resource('services', ServiceController::class);
     Route::get('services/{service}/status', [ServiceController::class, 'statusToggle'])->name('services.status');
 
     Route::resource('portfolios', PortfolioController::class);
+    Route::get('portfolios/{portfolio}/status', [PortfolioController::class, 'statusToggle'])->name('portfolios.status');
     Route::resource('testimonials', TestimonialController::class);
+    Route::get('testimonials/{testimonial}/status', [TestimonialController::class, 'statusToggle'])->name('testimonials.status');
     Route::resource('pages', PageController::class);
+    Route::get('pages/{page}/status', [PageController::class, 'statusToggle'])->name('pages.status');
+    Route::delete('contacts/destroy_all', [ContactController::class, 'destroyAll'])->name('contacts.destroy.all');
     Route::resource('contacts', ContactController::class);
     Route::resource('faqs', FaqController::class);
+    Route::get('faqs/{faq}/status', [FaqController::class, 'statusToggle'])->name('faqs.status');
     Route::resource('newsletters', NewsletterController::class);
     Route::resource('blog_categories', BlogCategoryController::class);
+    Route::get('blog_categories/{blogCategory}/status', [BlogCategoryController::class, 'statusToggle'])->name('blog_categories.status');
     Route::resource('blogs', BlogController::class);
+    Route::get('blogs/{blog}/status', [BlogController::class, 'statusToggle'])->name('blogs.status');
 
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('profile/edit', [AdminController::class, 'profileEdit'])->name('profile.edit');

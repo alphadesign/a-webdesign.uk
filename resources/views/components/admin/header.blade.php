@@ -5,7 +5,7 @@
             <div class="navbar-brand-box d-flex">
                 <a href="{{ url('/') }}" target="_blank" class="logo logo-light text-white m-auto">
                     <span class="logo-sm">
-                        <h2 class="mb-0">AD</h2>
+                        <h2 class="mb-0">AW</h2>
                     </span>
                     <span class="logo-lg mb-0">
                         <h2 class="mb-0 d-flex">

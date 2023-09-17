@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h5 class="mb-0 text-dark">Course Detail</h5>
+                    <h5 class="mb-0 text-dark">Course Detail <a href="{{ route('course',[$course]) }}" target="_blank">(Preview)</a></h5>
                 </div>
                 <div class="card-body">
                     <table class="table">

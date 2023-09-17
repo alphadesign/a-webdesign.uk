@@ -1,6 +1,6 @@
-@section('title', $course?->meta_title, config('site.site.title'))
-@section('description', $course?->meta_description,config('site.site.description'))
-@section('keywords', $course?->meta_keyword,config('site.site.keyword'))
+@section('title', $page?->meta_title, config('site.site.title'))
+@section('description', $page?->meta_description,config('site.site.description'))
+@section('keywords', $page?->meta_keyword,config('site.site.keyword'))
 {{-- show call to action on footer --}}
 <x-app-layout :callToAction='true'>
     <!-- breadcrumb begin -->
@@ -9,11 +9,10 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="breadcrumb-content">
-                        <h2>{{ $course?->title }}</h2>
+                        <h2>{{ $page?->title }}</h2>
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="{{ route('portfolios') }}">Courses</a></li>
-                            <li>{{ $course?->title }}</li>
+                            <li>{{ $page?->title }}</li>
                         </ul>
                     </div>
                 </div>
@@ -29,18 +28,13 @@
                 <div class="col-xl-8 col-lg-8">
                     <div class="blog-details-area">
                         <div class="part-img">
-                            <iframe width="100%" height="415"
-                                src="https://www.youtube.com/embed/QuPSn1ZLovA?si=oQkl5oD1dCC5fh-a"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                            {{-- <img src="{{ $course->thumbnail() }}" alt=""> --}}
+                            <img src="{{ $page->banner() }}" alt="{{ $page?->title }}">
                         </div>
                         <div class="part-body">
                             <div class="blog-head">
-                                <h2>{{ $course?->title }}</h2>
+                                <h2>{{ $page?->title }}</h2>
                             </div>
-                            <p>{!! $course?->description !!}</p>
+                            <p>{!! $page?->content !!}</p>
                         </div>
                     </div>
                 </div>

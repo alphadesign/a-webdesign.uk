@@ -75,4 +75,9 @@ class TestimonialController extends Controller
 
         return to_route('admin.testimonials.index')->withSuccess('SUCCESS !! Testimonial is not successfully created.');
     }
+    public function statusToggle(Testimonial $testimonial)
+    {
+        $testimonial->update(['status' => $testimonial->status ? false : true]);
+        return back()->withSuccess('Status successfully updated');
+    }
 }

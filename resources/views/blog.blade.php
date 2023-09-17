@@ -33,7 +33,7 @@
                                 <ul>
                                     @foreach ($categories ?? [] as $category)
                                     <li>
-                                        <a href="#">{{ $category?->name }}</a>
+                                        <a href="{{ route('blogs',[$category]) }}">{{ $category?->name }}</a>
                                     </li>
                                     @endforeach
                                 </ul>

@@ -24,6 +24,9 @@ Route::get('about', [HomeController::class, 'about'])->name('about');
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
+// pages
+Route::get('pages/{page:slug}', [HomeController::class, 'pages'])->name('pages');
+
 // faq
 Route::get('faq', [HomeController::class, 'faq'])->name('faq');
 // testimonials
@@ -33,7 +36,7 @@ Route::get('portfolios', [HomeController::class, 'portfolios'])->name('portfolio
 Route::get('portfolio/{portfolio}', [HomeController::class, 'portfolio'])->name('portfolio');
 
 // blog system
-Route::get('blogs', [HomeController::class, 'blogs'])->name('blogs');
+Route::get('blogs/{blogCategory:slug?}', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('blog/{blog:slug}', [HomeController::class, 'blog'])->name('blog');
 
 // course system

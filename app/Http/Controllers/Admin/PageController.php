@@ -74,4 +74,10 @@ class PageController extends Controller
         $page->delete();
         return to_route('admin.pages.index')->withSuccess('SUCCESS !! Page has been successfully deleted');
     }
+
+    public function statusToggle(Page $page)
+    {
+        $page->update(['status' => $page->status ? false : true]);
+        return back()->withSuccess('Status successfully updated');
+    }
 }

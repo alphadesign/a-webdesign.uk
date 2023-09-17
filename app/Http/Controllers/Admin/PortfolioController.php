@@ -126,4 +126,10 @@ class PortfolioController extends Controller
         $portfolio->delete();
         return to_route('admin.portfolios.index')->withErrors('Portfolio has been successfully deleted.');
     }
+    public function statusToggle(Portfolio $portfolio)
+    {
+        $portfolio->update(['status' => $portfolio->status ? false : true]);
+        return back()->withSuccess('Status successfully updated');
+    }
+
 }

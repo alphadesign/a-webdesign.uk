@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Course;
 use App\Models\Faq;
+use App\Models\Page;
 use App\Models\Portfolio;
 use App\Models\Service;
 use App\Models\Testimonial;
@@ -57,10 +58,15 @@ class HomeController extends Controller
     {
         return view('service')->with('service', $service);
     }
-    public function blogs()
+    public function blogs(BlogCategory $blogCategory)
     {
-        $blogs = Blog::where('status', true)->with('category')->paginate();
-        return view('blogs')->with('blogs', $blogs);
+        $query = Blog::query()->where('status', true);
+        if ($blogCategory?->id) {
+            $query->where('blog_category_id', $blogCategory->id);
+        }
+        $blogs = $query->with('category')->paginate();
+
+        return view('blogs')->with('blogs', $blogs)->with('blogCategory', $blogCategory);
     }
     public function blog(Blog $blog)
     {
@@ -78,5 +84,9 @@ class HomeController extends Controller
     public function course(Course $course)
     {
         return view('course')->with('course', $course);
+    }
+
+    public function pages(Page $page){
+        return view('page')->with('page', $page);
     }
 }

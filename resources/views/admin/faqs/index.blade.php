@@ -52,14 +52,39 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td width="60%">
-                            {{ $faq->question }}
+                            <div>
+                                <strong>Question:-</strong>
+                                {{ $faq->question }}
+                            </div>
+                            <div>
+                                <strong>Answer:-</strong>
+                                {{ $faq->answer }}
+                            </div>
                             <div class="small">{{ $faq->updated_at->format('d-M-Y h:i a') }}</div>
                         </td>
                         <td>
                             {{ $faq->pref }} /
-                            <span class="badge bg-{{ $faq->status ? 'success' : 'danger' }}">
-                                {{ $faq->status ? 'Active' : 'In-Active' }}
-                            </span>
+                            <div class="btn-group">
+                                <button type="button"
+                                    class="btn btn-{{ $faq->status ? 'success' : 'danger' }} text-nowrap btn-sm">
+                                    {!! $faq->status ? 'Active '.str_repeat('&nbsp;', 2) : 'In-active' !!}
+                                </button>
+                                <button type="button"
+                                    class="btn btn-{{ $faq->status ? 'success' : 'danger' }} btn-sm dropdown-toggle dropdown-toggle-split"
+                                    data-bs-toggle="dropdown">
+                                    <i class="fas fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item bg-danger text-white"
+                                        href="{{ route('admin.faqs.status', [$faq]) }}">
+                                        In-active
+                                    </a>
+                                    <a class="dropdown-item bg-success text-white"
+                                        href="{{ route('admin.faqs.status', [$faq]) }}">
+                                        Active
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                         <td class="text-nowrap">
                             @can('faqs_show')

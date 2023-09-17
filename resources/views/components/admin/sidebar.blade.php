@@ -111,25 +111,25 @@
                 <li>
                     <a href="{{ route('admin.contacts.index') }}" class="waves-effect">
                         <i class="fas fa-address-book"></i>
-                        <span>Contact Request</span>
+                        <span>Queries</span>
                     </a>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="{{ route('admin.newsletters.index') }}" class="waves-effect">
                         <i class="fas fa-newspaper"></i>
                         <span>Newsletter Request</span>
                     </a>
-                </li>
+                </li> --}}
 
-                @can('queries_access')
+                {{-- @can('queries_access')
                 <li>
                     <a href="{{ route('admin.queries.index') }}" class="waves-effect">
                         <i class="fas fa-question-circle"></i>
                         <span>Queries</span>
                     </a>
                 </li>
-                @endcan
+                @endcan --}}
 
                 {{-- @canany(['roles_access', 'permissions_access', 'users_access'])
                 <li class="menu-title">Manage Users</li>

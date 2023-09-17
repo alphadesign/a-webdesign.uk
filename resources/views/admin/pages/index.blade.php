@@ -31,14 +31,38 @@
                             {{ $page->title }}
                             <div class="small">{{ $page->created_at->format('d-M-Y h:i A') }}</div>
                         </td>
-                        <td>{{ $page->status ? 'Active' : 'In-Active' }}</td>
+                        <td><div class="btn-group">
+                            <button type="button"
+                                class="btn btn-{{ $page->status ? 'success' : 'danger' }} text-nowrap btn-sm">
+                                {!! $page->status ? 'Active '.str_repeat('&nbsp;', 2) : 'In-active' !!}
+                            </button>
+                            <button type="button"
+                                class="btn btn-{{ $page->status ? 'success' : 'danger' }} btn-sm dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown">
+                                <i class="fas fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item bg-danger text-white"
+                                    href="{{ route('admin.pages.status', [$page]) }}">
+                                    In-active
+                                </a>
+                                <a class="dropdown-item bg-success text-white"
+                                    href="{{ route('admin.pages.status', [$page]) }}">
+                                    Active
+                                </a>
+                            </div>
+                        </div></td>
                         <td class="text-nowrap">
-                            @can('pages_show')
+                            {{-- @can('pages_show')
                             <a href="{{ route('admin.pages.show', [$page]) }}"
                                 class="btn btn-info btn-sm btn-loader load-circle">
                                 <i class="fas fa-info-circle"></i>
                             </a>
-                            @endcan
+                            @endcan --}}
+                            <a href="{{ route('pages', [$page]) }}"
+                                class="btn btn-info btn-sm btn-loader load-circle" title="Preview" target="_blank">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
 
                             @can('pages_update')
                             <a href="{{ route('admin.pages.edit', [$page]) }}"

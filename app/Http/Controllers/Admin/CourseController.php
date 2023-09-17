@@ -147,4 +147,10 @@ class CourseController extends Controller
         }
         return 'https://www.youtube.com/embed/' . $youtube_id;
     }
+
+    public function statusToggle(Course $course)
+    {
+        $course->update(['status' => $course->status ? false : true]);
+        return back()->withSuccess('Status successfully updated');
+    }
 }

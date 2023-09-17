@@ -8,6 +8,7 @@
         <meta name="description" content="@yield('title', config('app.name', 'Laravel'))"  />
         <meta name="keywords" content="@yield('title', config('app.name', 'Laravel'))"  />
         <meta name="author" content="Akhilesh Gupta"  />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}">
         <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap.min.css') }}" data-dark="{{ asset('assets/admin/css/bootstrap-dark.min.css') }}" id="bootstrap-style" type="text/css" />

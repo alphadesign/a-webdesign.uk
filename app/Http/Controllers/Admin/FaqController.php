@@ -12,7 +12,7 @@ class FaqController extends Controller
     public function index(Request $request)
     {
         $this->authorize('faqs_access');
-        $query = Faq::select('id', 'question', 'pref', 'status', 'created_at', 'updated_at');
+        $query = Faq::select('id', 'question','answer', 'pref', 'status', 'created_at', 'updated_at');
         if ($request->get('search')) {
             $query->where('question', 'LIKE', '%' . $request->get('search') . '%');
             $query->orWhere('pref', 'LIKE', '%' . $request->get('search') . '%');
@@ -79,5 +79,10 @@ class FaqController extends Controller
         $this->authorize('faqs_delete');
         $faq->delete();
         return to_route('admin.faqs.index')->withSuccess('SUCCESS !! Faq has been successfully deleted');
+    }
+    public function statusToggle(Faq $faq)
+    {
+        $faq->update(['status' => $faq->status ? false : true]);
+        return back()->withSuccess('Status successfully updated');
     }
 }

@@ -189,7 +189,7 @@
                         <ul>
                             @foreach ($groups ?? [] as $page)
                             <li>
-                                <a href="#">{{ $page->title }}</a>
+                                <a href="{{ route('pages',[$page]) }}">{{ $page->title }}</a>
                             </li>
 
                             @endforeach
