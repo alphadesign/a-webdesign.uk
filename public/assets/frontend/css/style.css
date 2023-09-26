@@ -241,7 +241,7 @@
     width: 16px;
     height: 16px;
     display: inline-block;
-    background-color: #18bc9c;
+    background-color: #FFBF00;
     -webkit-animation: square2 2s infinite ease-in-out both;
     animation: square2 2s infinite ease-in-out both;
 }
@@ -281,7 +281,7 @@
         -webkit-transform: translateX(-20px) translateY(-10px) rotate(-180deg);
         transform: translateX(-20px) translateY(-10px) rotate(-180deg);
         border-radius: 50%;
-        background: #3498db;
+        background: #FFBF00;
     }
 
     100%,
@@ -303,7 +303,7 @@
         -webkit-transform: translateX(-20px) translateY(-10px) rotate(-180deg);
         transform: translateX(-20px) translateY(-10px) rotate(-180deg);
         border-radius: 50%;
-        background: #3498db;
+        background: #CC7722;
     }
 
     100%,
@@ -369,7 +369,7 @@
         -webkit-transform: translateX(-20px) translateY(10px) rotate(-180deg);
         transform: translateX(-20px) translateY(10px) rotate(-180deg);
         border-radius: 50%;
-        background: #2ecc71;
+        background: #F4C430;
     }
 
     100%,
@@ -391,7 +391,7 @@
         -webkit-transform: translateX(-20px) translateY(10px) rotate(-180deg);
         transform: translateX(-20px) translateY(10px) rotate(-180deg);
         border-radius: 50%;
-        background: #2ecc71;
+        background: #FADA5E;
     }
 
     100%,
@@ -1000,6 +1000,7 @@ ul {
 .header .logo a {
     display: inline-block;
 }
+
 
 .header .mainmenu .navbar {
     padding: 0;
@@ -1767,6 +1768,9 @@ ul {
 
 .header-5 .logo a {
     display: inline-block;
+}
+.header-5 .logo a .mobile {
+    display: none;
 }
 
 .header-5 .mainmenu .navbar {
@@ -5354,7 +5358,7 @@ ul {
 }
 
 .copyright .social-area ul li a.twitter {
-    background: #55acee;
+    background: #fff6f6;
 }
 
 .copyright .social-area ul li a.skype {
@@ -6219,7 +6223,8 @@ ul {
 }
 
 .breadcrumb-murtes .breadcrumb-content {
-    padding: 140px 0;
+    /* padding: 140px 0; */
+    padding: 80px 0;
     margin-top: 101px;
 }
 
@@ -7579,7 +7584,8 @@ ul {
     -ms-flex-align: center;
     align-items: center;
     background: #f4f9ff;
-    padding: 40px;
+    padding: 40px 40px;
+    margin: 4px;
     border: 1px solid #e9f1fc;
     border-radius: 10px;
     position: relative;
@@ -7636,11 +7642,11 @@ ul {
 
 .contact .contact-address .single-address .part-icon img {
     position: absolute;
-    height: 80px;
+    height: 52px;
     width: auto;
     opacity: .2;
     left: 50%;
-    top: 50%;
+    /* bottom: 38%; */
     -webkit-transform: translateX(-50%) translateY(-50%);
     -ms-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
@@ -7652,7 +7658,7 @@ ul {
 
 .contact .contact-address .single-address .part-icon span.title {
     display: block;
-    font-size: 45px;
+    font-size: 32px;
     font-weight: 800;
     color: #222;
     line-height: 80px;
@@ -7758,4 +7764,15 @@ ul {
 .header-5 .mainmenu .navbar .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item {
     width: auto;
     min-width: 240px;
+}
+/*  customize landing page banner  */
+.banner-5 .banner-content {
+    padding: 128px 0;
+    margin-top: 74px;
+    margin-right: -60px;
+}
+.banner-5 .banner-content-background {
+    background: rgba(0, 0, 0, 0.21);
+    padding: 34px 52px;
+    border-radius: 15px;
 }

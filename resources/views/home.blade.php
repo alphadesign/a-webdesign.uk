@@ -1,22 +1,32 @@
 <x-app-layout>
 
     <!-- banner begin -->
-    <div class="banner-5">
+    <div class="banner-5"
+        style="background-image: url({{ asset('storage/'.setting('general_settings')?->option_value['banner']) }})">
         <div class="circle">
-            <img src="{{ asset('assets/frontend/img/home-circle.png') }}" alt="">
+            <img src="{{ asset('assets/frontend/img/home-circle.png') }}" alt="circle">
         </div>
         <div class="container">
             <div class="row justify-content-xl-end justify-content-lg-center  justify-content-center">
                 <div class="col-xl-5 col-lg-8 col-md-8">
                     <div class="banner-content">
-                        <h1>We Provide Custom IT Solutions for your business</h1>
-                        <p>We believe that your success is our success and as a result, we always work hard for our
-                            customer to gain more business. This is our company's ethos.</p>
-                        <div class="buttons">
-                            <a href="{{ route('about') }}" class="banner-button btn-murtes">About us <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                            <a href="{{ route('contact') }}" class="banner-button btn-murtes-2">Get a Quote <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
+                        <div class="banner-content-background">
+                            <h1>{{ setting('general_settings')?->option_value['banner_heading'] }}</h1>
+                            <p>{{ setting('general_settings')?->option_value['banner_subheading'] }}</p>
+                            <div class="buttons">
+                                @if (setting('general_settings')?->option_value['banner_action_name1'])
+                                <a href="{{ setting('general_settings')?->option_value['banner_action_url1'] }}"
+                                    class="banner-button btn-murtes">{{
+                                    setting('general_settings')?->option_value['banner_action_name1'] }} <i
+                                        class="fas fa-long-arrow-alt-right"></i></a>
+                                @endif
+                                @if (setting('general_settings')?->option_value['banner_action_name2'])
+                                <a href="{{ setting('general_settings')?->option_value['banner_action_url2'] }}"
+                                    class="banner-button btn-murtes-2">{{
+                                    setting('general_settings')?->option_value['banner_action_name2'] }} <i
+                                        class="fas fa-long-arrow-alt-right"></i></a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -34,29 +44,31 @@
                     <div class="part-text">
                         <h2>
                             <span class="special">
-                                25 YEARS EXPERIENCE
+                                {{ setting('general_settings')?->option_value['about']['title'] }}
                             </span>
-                            Before you proceed,
-                            learn about our team.
+                            {{ setting('general_settings')?->option_value['about']['subtitle'] }}
                         </h2>
-                        <p>Lorem Ipsum is simply dummy text of them printing typesetting
+                        {!! setting('general_settings')?->option_value['about']['content'] !!}
+                        {{-- <p>Lorem Ipsum is simply dummy text of them printing typesetting
                             has been the industry's standard dummy text ever since the and
                             specimen book five centuries.</p>
                         <p>Lorem Ipsum is simply dummy text of them printing typesetting
                             has been the industry's standard dummy text ever since the and
-                            specimen book five centuries.</p>
+                            specimen book five centuries.</p> --}}
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-5">
                     <div class="part-img">
-                        <img class="main-img" src="{{ asset('assets/frontend/img/about-3.jpg') }}" alt=""
-                            data-aos="fade" data-aos-offset="300" data-aos-duration="1000"
+                        <img class="main-img"
+                            src="{{ asset('storage/'.setting('general_settings')?->option_value['about']['main_image']) }}"
+                            alt="about title" data-aos="fade" data-aos-offset="300" data-aos-duration="1000"
                             data-aos-easing="ease-in-sine">
-                        <img class="overlap-img" src="{{ asset('assets/frontend/img/about-3-small.jpg') }}" alt=""
-                            data-aos="fade-left" data-aos-offset="300" data-aos-duration="1200"
+                        <img class="overlap-img"
+                            src="{{ asset('storage/'.setting('general_settings')?->option_value['about']['thumbnail']) }}"
+                            alt="" data-aos="fade-left" data-aos-offset="300" data-aos-duration="1200"
                             data-aos-easing="ease-in-sine">
-                        <a href="https://www.youtube.com/watch?v=NU9Qyic_mX0" class="play-button mfp-iframe"><i
-                                class="fas fa-play"></i></a>
+                        <a href="{{ setting('general_settings')?->option_value['about']['video_link']}}"
+                            class="play-button mfp-iframe"><i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
@@ -70,7 +82,8 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3" data-aos="new-animation" data-aos-delay="100" data-aos-duration="500">
                     <div class="single-statics">
-                        <span class="number"><span class="counter">25</span>+</span>
+                        <span class="number"><span class="counter">{{
+                                setting('general_settings')?->option_value['years_of_experience'] }}</span>+</span>
                         <span class="title">Years of experience</span>
                         <div class="bg-icon">
                             <img src="{{ asset('assets/frontend/img/svg/timetable.svg') }}" alt="">
@@ -79,7 +92,8 @@
                 </div>
                 <div class="col-xl-3 col-lg-3" data-aos="new-animation" data-aos-delay="100" data-aos-duration="1000">
                     <div class="single-statics">
-                        <span class="number"><span class="counter">98</span>+</span>
+                        <span class="number"><span class="counter">{{
+                                setting('general_settings')?->option_value['number_of_projects'] }}</span>+</span>
                         <span class="title">Total project</span>
                         <div class="bg-icon">
                             <img src="{{ asset('assets/frontend/img/svg/contract.svg') }}" alt="">
@@ -88,7 +102,8 @@
                 </div>
                 <div class="col-xl-3 col-lg-3" data-aos="new-animation" data-aos-delay="100" data-aos-duration="1500">
                     <div class="single-statics">
-                        <span class="number"><span class="counter">35</span>+</span>
+                        <span class="number"><span class="counter">{{
+                                setting('general_settings')?->option_value['winning_awards'] }}</span>+</span>
                         <span class="title">Winning awards</span>
                         <div class="bg-icon">
                             <img src="{{ asset('assets/frontend/img/svg/trophy.svg') }}" alt="">
@@ -97,7 +112,8 @@
                 </div>
                 <div class="col-xl-3 col-lg-3" data-aos="new-animation" data-aos-delay="100" data-aos-duration="2000">
                     <div class="single-statics">
-                        <span class="number"><span class="counter">84</span>+</span>
+                        <span class="number"><span class="counter">{{
+                                setting('general_settings')?->option_value['happy_clients'] }}</span>+</span>
                         <span class="title">Happy clients</span>
                         <div class="bg-icon">
                             <img src="{{ asset('assets/frontend/img/svg/happiness.svg') }}" alt="">
@@ -118,7 +134,8 @@
                         <h2>This is our <br> company’s ethos</h2>
                     </div>
                     <div class="col-xl-5 col-lg-5 d-xl-flex d-lg-flex d-block align-items-center">
-                        <p>We believe that your success is our success and as a result, we always work hard for our customers to gain more business.</p>
+                        <p>We believe that your success is our success and as a result, we always work hard for our
+                            customers to gain more business.</p>
                     </div>
                 </div>
             </div>
@@ -130,7 +147,8 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
+                    {{-- <a href="#" class="service-details-button">details <i
+                            class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">Product<br /> control services
@@ -138,7 +156,8 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
+                    {{-- <a href="#" class="service-details-button">details <i
+                            class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">Quality <br />control system
@@ -146,7 +165,8 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
+                    {{-- <a href="#" class="service-details-button">details <i
+                            class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">Software<br /> Engineering
@@ -154,7 +174,8 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
+                    {{-- <a href="#" class="service-details-button">details <i
+                            class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">Desktop<br /> Computing
@@ -162,7 +183,8 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
+                    {{-- <a href="#" class="service-details-button">details <i
+                            class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
                 <div class="single-servcie">
                     <h3 class="service-title">UI/UX<br /> Strategy
@@ -170,7 +192,8 @@
                     </h3>
                     <p class="service-content">must explain to you how all this mistaken idea of denouncing of a
                         pleasure and praising pain was born</p>
-                    {{-- <a href="#" class="service-details-button">details <i class="fas fa-long-arrow-alt-right"></i></a> --}}
+                    {{-- <a href="#" class="service-details-button">details <i
+                            class="fas fa-long-arrow-alt-right"></i></a> --}}
                 </div>
             </div>
         </div>

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\QueryController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use Takshak\Adash\Http\Middleware\ReferrerMiddleware;
@@ -65,7 +66,7 @@ Route::middleware(['auth', GatesMiddleware::class, ReferrerMiddleware::class])->
         Route::get('status-toggle/{user}', 'statusToggle')->name('status-toggle');
         Route::get('profile-img/remove/{user}', 'profileImgRemove')->name('users.profile_img.remove');
     });
-
+    Route::resource('settings', SettingController::class);
     Route::resource('queries', QueryController::class);
     Route::resource('roles', RoleController::class)->except(['show']);
     Route::get('login-to/{user:id}', [UserController::class, 'loginToUser'])->name('login-to');

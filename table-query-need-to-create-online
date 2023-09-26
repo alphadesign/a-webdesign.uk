@@ -1,0 +1,9 @@
+1. ALTER TABLE `pages` ADD `meta_title` TEXT NULL DEFAULT NULL AFTER `status`, ADD `meta_keyword` TEXT NULL DEFAULT NULL AFTER `meta_title`, ADD `meta_description` TEXT NULL DEFAULT NULL AFTER `meta_keyword`;
+
+2. ALTER TABLE `pages` ADD `is_main_menu` BOOLEAN NOT NULL DEFAULT TRUE AFTER `status`, ADD `is_footer_menu` BOOLEAN NOT NULL DEFAULT TRUE AFTER `is_main_menu`;
+
+3. ALTER TABLE `pages` ADD `banner_title` VARCHAR(255) NULL DEFAULT NULL AFTER `banner`;
+
+4. ALTER TABLE `pages` ADD `breadcrumb_title` VARCHAR(255) NULL DEFAULT NULL AFTER `title`, ADD `breadcrumb_subtitle` VARCHAR(255) NULL DEFAULT NULL AFTER `breadcrumb_title`;
+
+5. ALTER TABLE `services` ADD `breadcrumb_title` VARCHAR(255) NULL DEFAULT NULL AFTER `name`, ADD `breadcrumb_subtitle` VARCHAR(255) NULL DEFAULT NULL AFTER `breadcrumb_title`, ADD `cover_image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `breadcrumb_subtitle`, ADD `main_image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `cover_image_title`;

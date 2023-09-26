@@ -115,6 +115,13 @@
                     </a>
                 </li>
 
+                <li class="menu-title">Settings</li>
+                <li>
+                    <a href="{{ route('admin.settings.index') }}" class="waves-effect">
+                        <i class="fas fa-address-book"></i>
+                        <span>Website settings</span>
+                    </a>
+                </li>
                 {{-- <li>
                     <a href="{{ route('admin.newsletters.index') }}" class="waves-effect">
                         <i class="fas fa-newspaper"></i>

@@ -3,7 +3,7 @@
         <x-slot name="logo">
             <a href="{{ url('/login') }}">
                 {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
-                <img src="{{ asset('assets/image/logo-Alpha3-300x47.png') }}" alt="a-webdesign" width="240" >
+                <img src="{{ asset('storage/'.setting('general_settings')?->option_value['logo']); }}" alt="a-webdesign" width="240" >
             </a>
         </x-slot>
 

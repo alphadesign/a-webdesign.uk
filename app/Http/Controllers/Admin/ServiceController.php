@@ -46,6 +46,8 @@ class ServiceController extends Controller
 
         $service = new Service;
         $service->name                      =  $request->post('name');
+        $service->breadcrumb_title          =  $request->post('breadcrumb_title');
+        $service->breadcrumb_subtitle       =  $request->post('breadcrumb_subtitle');
         $service->slug                      =  Str::slug($request->post('name'));
         $service->status                    =  $request->post('status');
         $service->short_description         =  $request->post('short_description');
@@ -53,6 +55,9 @@ class ServiceController extends Controller
         $service->meta_title                =  $request->post('meta_title');
         $service->meta_keyword              =  $request->post('meta_keyword');
         $service->meta_description          =  $request->post('meta_description');
+
+        $service->cover_image_title         =  $request->post('cover_image_title');
+        $service->main_image_title          =  $request->post('main_image_title');
 
         if ($request->file('cover_image')) {
             $service->cover_image = 'services/' . time() . '.' . $request->file('cover_image')->getClientOriginalExtension();
@@ -100,6 +105,8 @@ class ServiceController extends Controller
         ]);
 
         $service->name                =  $request->post('name');
+        $service->breadcrumb_title    =  $request->post('breadcrumb_title');
+        $service->breadcrumb_subtitle =  $request->post('breadcrumb_subtitle');
         $service->slug                =  Str::slug($request->post('name'));
         $service->status              =  $request->post('status');
         $service->short_description   =  $request->post('short_description');
@@ -107,6 +114,9 @@ class ServiceController extends Controller
         $service->meta_title          =  $request->post('meta_title');
         $service->meta_keyword        =  $request->post('meta_keyword');
         $service->meta_description    =  $request->post('meta_description');
+
+        $service->cover_image_title         =  $request->post('cover_image_title');
+        $service->main_image_title    =  $request->post('main_image_title');
 
         if ($request->file('cover_image')) {
             $cover_imagePath = public_path('storage/' . $service->cover_image);

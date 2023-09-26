@@ -31,6 +31,20 @@
                         <label for="name">Name <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control" required="" value="{{ $service->name }}">
                     </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Breadcrumb Title</label>
+                                <input type="text" name="breadcrumb_title" class="form-control" value="{{ $service->breadcrumb_title }}">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Breadcrumb Subtitle</label>
+                                <input type="text" name="breadcrumb_subtitle" class="form-control" value="{{ $service->breadcrumb_subtitle }}">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="short_description">Short Description</label>
                         <textarea name="short_description" class="form-control" id="short_description" cols="30"
@@ -41,29 +55,48 @@
                         <textarea name="long_description" class="form-control text-editor" id="long_description"
                             cols="30" rows="10">{!! $service?->long_description !!}</textarea>
                     </div>
-                    <div class="d-flex">
-                        <div class="mr-2">
-                            <a href="#" class="bg-danger user_profile_remove text-white rounded-pill text-center p-0 border border-white border-3 load-circle"><i class="fas fa-times"></i></a>
-                            <div id="cover-image-preview">
-                                <img src="{{ $service->coverImage() }}" alt="image" width="70" class="rounded-circle img-thumbnail">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="d-flex">
+                                <div class="mr-2">
+                                    <a href="#" class="bg-danger user_profile_remove text-white rounded-pill text-center p-0 border border-white border-3 load-circle"><i class="fas fa-times"></i></a>
+                                    <div id="cover-image-preview">
+                                        <img src="{{ $service->coverImage() }}" alt="image" width="70" class="rounded-circle img-thumbnail">
+                                    </div>
+                                </div>
+                                <div class="form-group flex-fill">
+                                    <label for="">Cover Image</label>
+                                    <input type="file" name="cover_image" class="form-control" id="crop-cover-image">
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group flex-fill">
-                            <label for="">Cover Image</label>
-                            <input type="file" name="cover_image" class="form-control" id="crop-cover-image">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Cover Image Title / Alternate <span class="text-danger">*</span></label>
+                                <input type="text" name="cover_image_title" class="form-control" value="{{ $service->cover_image_title }}">
+                            </div>
                         </div>
                     </div>
-
-                    <div class="d-flex">
-                        <div class="mr-2">
-                            <a href="#" class="bg-danger user_profile_remove text-white rounded-pill text-center p-0 border border-white border-3 load-circle"><i class="fas fa-times"></i></a>
-                            <div id="main-image-preview">
-                                <img src="{{ $service->mainImage() }}" alt="image" width="70" class="rounded-circle img-thumbnail">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="d-flex">
+                                <div class="mr-2">
+                                    <a href="#" class="bg-danger user_profile_remove text-white rounded-pill text-center p-0 border border-white border-3 load-circle"><i class="fas fa-times"></i></a>
+                                    <div id="main-image-preview">
+                                        <img src="{{ $service->mainImage() }}" alt="image" width="70" class="rounded-circle img-thumbnail">
+                                    </div>
+                                </div>
+                                <div class="form-group flex-fill">
+                                    <label for="">Main Image <span>(Make sure image should be 1600X400 pixel)</span></label>
+                                    <input type="file" name="main_image" class="form-control" id="crop-main-image">
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group flex-fill">
-                            <label for="">Main Image</label>
-                            <input type="file" name="main_image" class="form-control" id="crop-main-image">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Main Image Title / Alternate <span class="text-danger">*</span></label>
+                                <input type="text" name="main_image_title" class="form-control" value="{{ $service->main_image_title }}">
+                            </div>
                         </div>
                     </div>
 
@@ -81,6 +114,7 @@
                             </div>
                         </div>
                     </div>
+                    <h4 class="my-2">SEO</h4>
                     <div class="form-group">
                         <label for="meta_title">Meta Title</label>
                         <textarea name="meta_title" class="form-control" id="meta_title" cols="30" rows="2">{{ $service?->meta_title }}</textarea>

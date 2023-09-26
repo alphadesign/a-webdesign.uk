@@ -9,8 +9,8 @@
                     </span>
                     <span class="logo-lg mb-0">
                         <h2 class="mb-0 d-flex">
-                            {{-- <span>a-webdesign</span> --}}
-                            <img src="{{ asset('assets/image/logo-Alpha3-300x47.png') }}" alt="a-webdesign" width="180">
+                            {{-- <span>{{ setting('general_settings')?->option_value['app_name'] }}</span> --}}
+                            <img src="{{ asset('storage/'.setting('general_settings')?->option_value['logo']); }}" alt="a-webdesign" width="180">
                         </h2>
                     </span>
                 </a>

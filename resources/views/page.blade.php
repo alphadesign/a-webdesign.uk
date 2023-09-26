@@ -4,15 +4,17 @@
 {{-- show call to action on footer --}}
 <x-app-layout :callToAction='true'>
     <!-- breadcrumb begin -->
-    <div class="breadcrumb-murtes">
+    <div class="breadcrumb-murtes" @if ($page->banner)
+        style="background:url('{{ $page->banner() }}')"
+    @endif>
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="breadcrumb-content">
-                        <h2>{{ $page?->title }}</h2>
+                        <h2>{{ $page?->breadcrumb_title ?? $page->title }}</h2>
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
-                            <li>{{ $page?->title }}</li>
+                            <li>{{ $page?->breadcrumb_subtitle ?? $page->title }}</li>
                         </ul>
                     </div>
                 </div>
@@ -27,9 +29,11 @@
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-8">
                     <div class="blog-details-area">
+                        {{-- @if ($page->banner)
                         <div class="part-img">
-                            <img src="{{ $page->banner() }}" alt="{{ $page?->title }}">
+                            <img src="{{ $page->banner() }}" alt="{{ $page?->banner_title }}">
                         </div>
+                        @endif --}}
                         <div class="part-body">
                             <div class="blog-head">
                                 <h2>{{ $page?->title }}</h2>

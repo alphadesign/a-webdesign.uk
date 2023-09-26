@@ -36,7 +36,7 @@ solutions. Tel: 0044 79 4323 5968 &#x2d; 079 4323 5968')
                                         <span class="title">Email</span>
                                     </div>
                                     <div class="part-text">
-                                        <p>team@a-webdesign.com</p>
+                                        <p>{{ setting('general_settings')?->option_value['support_email'] }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@ solutions. Tel: 0044 79 4323 5968 &#x2d; 079 4323 5968')
                                         <span class="title">Tel</span>
                                     </div>
                                     <div class="part-text">
-                                        <p>(+44) 01706 390331</p>
+                                        <p>{{ setting('general_settings')?->option_value['support_phone'] }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -58,9 +58,7 @@ solutions. Tel: 0044 79 4323 5968 &#x2d; 079 4323 5968')
                                         <span class="title">Add:</span>
                                     </div>
                                     <div class="part-text">
-                                        <p>103 Rochdale Road, Milnrow
-                                            Lancashire, United Kingdom
-                                            Postcode: OL16 4DU</p>
+                                        <p>{{ setting('general_settings')?->option_value['company_address'] }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -75,8 +73,8 @@ solutions. Tel: 0044 79 4323 5968 &#x2d; 079 4323 5968')
                             for our service?</h4>
                         <form method="POST" action="{{ route('contact.store') }}" enctype="multipart/form-data">
                             @csrf
-                            <input type="text" name="name" placeholder="Ara Sompa" required>
-                            <input type="text" name="mobile" placeholder="+00 568 468 864" required>
+                            <input type="text" name="name" placeholder="Full Name" required>
+                            <input type="text" name="mobile" placeholder="{{ setting('general_settings')?->option_value['support_phone'] }}" required>
                             <input type="email" name="email" placeholder="Email here" required>
                             <textarea placeholder="Message...." name="message" required></textarea>
                             <button type="submit" class="btn-murtes-6">Submit Now <i

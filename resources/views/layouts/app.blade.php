@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', config('app.name', 'a-webdesign'))</title>
+    <title>@yield('title', setting('general_settings')?->option_value['app_name'] ?? config('app.name','A-Webdesign'))</title>
     <meta name="description" content="@yield('description', config('app.description', 'a-webdesign'))" />
     <meta name="keywords" content="@yield('keywords', config('app.keywords', 'a-webdesign'))" />
     <meta name="author" content="config('app.name', 'a-webdesign')" />
-    <meta property="og:image" content="@yield('image', asset('assets/frontend/img/logo-2.png'))" />
+    <meta property="og:image" content="@yield('image',  asset('storage/'.setting('general_settings')?->option_value['logo']))" />
     <meta property="og:image:width" content="870" />
     <meta property="og:image:height" content="456" />
     <meta property="og:locale" content="en_GB" />
@@ -24,10 +24,10 @@
     <meta name=" twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="@yield('title', config('app.name', 'a-webdesign'))" />
     <meta name="twitter:description" content="" @yield('description', config('app.description', 'a-webdesign' ))" />
-    <meta name="twitter:image" content="@yield('image', asset('assets/frontend/img/logo-2.png'))" />
+    <meta name="twitter:image" content="@yield('image',  asset('storage/'.setting('general_settings')?->option_value['logo']))" />
     <link rel="canonical" href="{{ request()->url() }}" />
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/frontend/img/favicon.html') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('storage/'.setting('general_settings')?->option_value['favicon']) }}" type="image/x-icon">
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <!-- fontawesome icon  -->
@@ -72,8 +72,8 @@
                         <div class="col-xl-12 col-lg-12 col-7 d-xl-block d-lg-block d-flex align-items-center">
                             <div class="logo">
                                 <a href="{{ route('home') }}">
-                                    {{-- <img src="{{ asset('assets/frontend/img/logo.png') }}" alt="logo"> --}}
-                                    <img src="{{ asset('assets/image/logo-Alpha3-300x47.png') }}" alt="logo">
+                                    <img src="{{ asset('storage/'.setting('general_settings')?->option_value['logo']) }}" alt="logo" class="desktop">
+                                    <img src="{{ asset('storage/'.setting('general_settings')?->option_value['mobile_logo']) }}" alt="logo" class="mobile">
                                 </a>
                             </div>
                         </div>
@@ -169,7 +169,7 @@
             <div class="row justify-content-between">
                 <div class="col-xl-4 col-lg-4">
                     <div class="about-widget">
-                        <h3>About A-Webdesign</h3>
+                        <h3>About {{ setting('general_settings')?->option_value['app_name'] ?? config('app.name') }}</h3>
                         <p>Alpha-Design is based in Manchester. With over 11 years of experience in design and
                             programming, we combine our creative and technical expertise to provide a customised
                             solution for each individual client.</p>
@@ -232,7 +232,7 @@
             <div class="row justify-content-between">
                 <div class="col-xl-6 col-lg-6 d-xl-flex d-lg-flex d-block align-items-center">
                     <div class="cp-area">
-                        <p>Copyright © {{ now()->format('Y') }} {{ config('app.name') }}. All Rights Reserved</p>
+                        <p>Copyright © {{ now()->format('Y') }} {{ setting('general_settings')?->option_value['app_name'] ?? config('app.name') }}. All Rights Reserved</p>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
@@ -243,8 +243,10 @@
                                         class="fab fa-facebook-f"></i></a>
                             </li>
                             <li>
-                                <a class="twitter" href="https://twitter.com/alpha_webdesign" target="_blank"><i
-                                        class="fab fa-twitter"></i></a>
+                                <a class="twitter" href="https://twitter.com/alpha_webdesign" target="_blank">
+                                    {{-- <i class="fab fa-twitter"></i> --}}
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+                                </a>
                             </li>
                             <li>
                                 <a class="youtube" href="https://www.youtube.com/@computingacademy" target="_blank"><i

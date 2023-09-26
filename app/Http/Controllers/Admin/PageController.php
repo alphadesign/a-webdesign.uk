@@ -30,9 +30,14 @@ class PageController extends Controller
     {
         $this->authorize('pages_create');
         $request->validate([
-            'title'     =>  'required|unique:pages,title',
-            'status'    =>  'nullable|boolean',
-            'content'   =>  'required'
+            'title'               =>  'required|unique:pages,title',
+            'content'             =>  'required',
+            'status'              =>  'nullable|boolean',
+            'is_main_menu'        =>  'nullable|boolean',
+            'is_footer_menu'      =>  'nullable|boolean',
+            'meta_title'          =>  'nullable',
+            'meta_keyword'        =>  'nullable',
+            'meta_description'    =>  'nullable',
         ]);
 
         $page = new Page;
@@ -55,9 +60,14 @@ class PageController extends Controller
     {
         $this->authorize('pages_update');
         $request->validate([
-            'title'     =>  'required|unique:pages,title,' . $page->id,
-            'status'    =>  'nullable|boolean',
-            'content'   =>  'required'
+            'title'               =>  'required|unique:pages,title,' . $page->id,
+            'content'             =>  'required',
+            'status'              =>  'nullable|boolean',
+            'is_main_menu'        =>  'nullable|boolean',
+            'is_footer_menu'      =>  'nullable|boolean',
+            'meta_title'          =>  'nullable',
+            'meta_keyword'        =>  'nullable',
+            'meta_description'    =>  'nullable',
         ]);
 
         $page = $action->save($request, $page);
